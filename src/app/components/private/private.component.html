@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="container m-5">
+    <p>Your token is : {{token}}</p>
+</div>
+
+<div class="container">
+    <div *ngFor="let book of books" class="row">
+        <div class="row m-3">
+            <h4 class="col-6">{{book['title']}}</h4>
+            <div class="col-1">{{book['author']}}</div>
+            <div class="col-2"> Published by {{book['publisher']}}</div>
+            <div class="col-2">ISBN: {{book['isbn']}}</div>
+            <div class="col-1">{{book['price']}}€</div>
+            <div class="col-12"><p class="col-12">{{book['description']}}</p></div>
+        </div>
+    </div>
+</div>

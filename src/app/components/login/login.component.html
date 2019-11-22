@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="container text-center">
+    <h1 class="m-5">Login</h1>
+    <form (ngSubmit)="submitForm()">
+        <input type="email" class="form-control m-3" name="email" [(ngModel)]="email" placeholder="Enter email">
+        <input type="password" class="form-control m-3" name="password" [(ngModel)]="password" placeholder="Enter password">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div class="m-3">
+        <a [routerLink]="['/register']">Register</a>
+    </div>
+</div>
