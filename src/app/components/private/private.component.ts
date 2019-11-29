@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api.service';
+import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-private',
@@ -13,6 +14,9 @@ export class PrivateComponent implements OnInit {
 
   public token: string;
   public books: any[];
+
+  private query:string;
+  private field = 'Title';
   
   constructor(private api: ApiService, private router: Router) {}
 
@@ -25,9 +29,6 @@ export class PrivateComponent implements OnInit {
       } else {
         // Check validity
         this.api.verifyToken(this.token).subscribe((obj) => {
-          this.api.getBooks().subscribe((observer) => {
-            this.books = observer;
-          });
         }, () => {
           // Error
           alert('Invalid token');
@@ -35,5 +36,19 @@ export class PrivateComponent implements OnInit {
         })
       }
     });
+  }
+
+  search() {
+    let aux = this.field.toLowerCase();
+    this.api.getBooks(aux, this.query).subscribe((observer) => {
+      console.log(observer['books']);
+      this.books = observer['books'];
+    }, (err) => {
+
+    });
+  }
+
+  setField(field:string) {
+    this.field = field;
   }
 }

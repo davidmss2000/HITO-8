@@ -23,8 +23,11 @@ export class RegisterComponent implements OnInit {
 
   submitForm() {
     this.api.register(this.name, this.surname, this.email, this.password).subscribe((obj) => {
-      alert('Registered successfully');
-      this.router.navigateByUrl('');
+      alert('Registered successfully, logging in');
+      this.api.login(this.password, this.email);
+      this.api.getToken().subscribe((obj) => {
+        if (obj !== '') this.router.navigateByUrl('private');
+      });
     }, (err) => alert(err['error']['err']));
   }
 }

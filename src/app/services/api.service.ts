@@ -14,7 +14,7 @@ export class ApiService {
   private loginURL = 'user/login';
   private registerURL = 'user/register';
   private protectedURL = 'user/private';
-  private bookURL = 'book/all'
+  private bookURL = 'book/';
 
   constructor(private http: HttpClient) {}
 
@@ -35,7 +35,6 @@ export class ApiService {
   }
 
   login(password:string, email:string) {
-    // API call and set token when ready
     this.http.post(this.baseURL + this.loginURL, {"email":email, "password":password}).subscribe((obj) => {
       alert('Login correcto');
       this.setToken(obj['token']);
@@ -44,12 +43,11 @@ export class ApiService {
     });
   }
 
-  getBooks(): Observable<any> {
-    return this.http.get(this.baseURL + this.bookURL);
+  getBooks(field:string, query:string): Observable<any> {
+    return this.http.get(`${this.baseURL}${this.bookURL}search/${field}/${query}`);
   }
 
   register(name, surname, email, password): Observable<any>{
     return this.http.post(this.baseURL + this.registerURL, {name, surname, email, password});
   }
-
 }
